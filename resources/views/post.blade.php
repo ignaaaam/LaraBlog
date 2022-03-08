@@ -45,7 +45,7 @@
                     </h1>
 
                     <div class="space-y-4 lg:text-lg leading-loose">
-                        <p>{{ $post->title }}</p>
+                        <p>{!! $post->body !!}</p>
                     </div>
                 </div>
             </article>

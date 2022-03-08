@@ -1,6 +1,6 @@
 @props(['post'])
 <article
-    class="transition-colors duration-300 cursor-pointer hover:bg-gray-300 border border-black border-opacity-0 hover:border-opacity-5 rounded-xl">
+    class="transition-colors duration-300 cursor-pointer hover:bg-gray-100 border border-black border-opacity-0 hover:border-opacity-5 rounded-xl">
     <div class="py-6 px-5 lg:flex">
         <div class="flex-1 lg:mr-8">
             {{--TODO--}}
@@ -28,9 +28,7 @@
             </header>
 
             <div class="text-sm mt-2">
-                <p>
-                    {{ $post->excerpt }}
-                </p>
+                    {!! $post->excerpt !!}
             </div>
 
             <footer class="flex justify-between items-center mt-8">
