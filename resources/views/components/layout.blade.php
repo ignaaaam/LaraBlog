@@ -1,6 +1,6 @@
 <!doctype html>
 
-<title>Laravel From Scratch Blog</title>
+<title>Larablog</title>
 <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
@@ -14,9 +14,19 @@
                 <img src="/images/logo.svg" alt="Laracasts Logo" width="165" height="16">
             </a>
         </div>
+        <div class="mt-8 md:mt-0 flex items-center">
+        @auth
+                <span class="text-sm font-bold uppercase">Welcome, <span class="text-sm font-bold uppercase text-blue-500 mr-8 ml-1">{{ auth()->user()->username }}</span></span>
 
-        <div class="mt-8 md:mt-0">
-            <a href="/" class="text-xs font-bold uppercase">Home Page</a>
+                <form action="/logout" method="POST">
+                    @csrf
+
+                    <button class="bg-gray-300 ml-3 rounded-full text-xs font-bold text-black uppercase py-3 px-5 hover:bg-gray-500 hover:text-white hover:shadow-xl transition" type="submit">Log out</button>
+                </form>
+        @else
+                <a href="/register" class="text-xs font-bold uppercase">Register</a>
+                <a href="/login" class="mx-6 text-xs font-bold uppercase">Log in</a>
+        @endauth
 
             <a href="#" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
                 Subscribe for Updates
@@ -54,5 +64,6 @@
         </div>
     </footer>
 </section>
+        <x-flash />
 </body>
 
