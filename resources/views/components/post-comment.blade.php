@@ -3,7 +3,7 @@
 
     <article class="flex space-x-4">
         <div class="flex-shrink-0">
-            <img class="rounded-xl" src="https://i.pravatar.cc/60?u={{ $comment->id }}" alt="" width="60" height="60">
+            <img class="rounded-xl" src="https://i.pravatar.cc/60?u={{ $comment->user_id }}" alt="" width="60" height="60">
         </div>
 
         <div>
@@ -12,7 +12,7 @@
 
                 <p class="text-xs">
                     Posted
-                    <time>{{ $comment->created_at->diffForHumans() }}</time>
+                    <time>{{ $comment->created_at->format('F j, Y, g:i a') }}</time>
                 </p>
             </header>
 
