@@ -17,7 +17,7 @@ class MustBeAdministrator
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->user()?->username === 'JeffreWay'){
+        if(auth()->user()?->username !== 'myNewUser'){
             abort(Response::HTTP_FORBIDDEN);
         }
 

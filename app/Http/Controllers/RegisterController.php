@@ -26,10 +26,8 @@ class RegisterController extends Controller
 
 //       PASSWORD HASHING MADE WITH ELOQUENT MUTATOR ON USER MODEL
 
-        $user = User::create($attributes);
-
 //        log user in
-        auth()->login($user);
+        auth()->login(User::create($attributes));
 
         return redirect('/')->with('success', 'Your account has been created.');
     }
