@@ -21,18 +21,28 @@
             </a>
         </div>
         <div class="mt-8 md:mt-0 flex items-center">
-        @auth
-                <span class="text-sm font-bold uppercase">Welcome, <span class="text-sm font-bold uppercase text-blue-500 mr-8 ml-1">{{ auth()->user()->username }}</span></span>
+            @auth
+                <x-dropdown>
+                    <x-slot name="trigger">
+                        <button class="text-sm font-bold uppercase">Welcome, <span class="text-sm font-bold uppercase text-blue-500 mr-8 ml-1">{{ auth()->user()->username }}</span></button>
+                    </x-slot>
+                    <x-dropdown-item href="/admin/dashboard">Dashboard</x-dropdown-item>
+                    <x-dropdown-item href="/admin/posts/create" :active="request()->is('admin/posts/create')">New Post</x-dropdown-item>
+                    <x-dropdown-item href="#" x-data="{}" @click.prevent="document.querySelector('#logout-form').submit()">Log Out</x-dropdown-item>
 
-                <form action="/logout" method="POST">
-                    @csrf
+                    <form id="logout-form" action="/logout" method="POST" class="hidden">
+                        @csrf
 
-                    <button class="bg-gray-300 ml-3 rounded-full text-xs font-bold text-black uppercase py-3 px-5 hover:bg-gray-500 hover:text-white hover:shadow-xl transition" type="submit">Log out</button>
-                </form>
-        @else
+                    </form>
+                </x-dropdown>
+
+
+
+
+            @else
                 <a href="/register" class="text-xs font-bold uppercase">Register</a>
                 <a href="/login" class="mx-6 text-xs font-bold uppercase">Log in</a>
-        @endauth
+            @endauth
 
             <a href="#newsletter" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
                 Subscribe for Updates
@@ -64,7 +74,7 @@
                                    class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none">
 
                             @error('email')
-                                <span class="text-xs text-red-500"> {{ $message }} </span>
+                            <span class="text-xs text-red-500"> {{ $message }} </span>
                             @enderror
                         </div>
                     </div>
@@ -79,6 +89,6 @@
         </div>
     </footer>
 </section>
-        <x-flash />
+<x-flash />
 </body>
 
