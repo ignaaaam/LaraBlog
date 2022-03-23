@@ -38,6 +38,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Post whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Post whereUserId($value)
  * @mixin \Eloquent
+ * @property string|null $thumbnail
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereThumbnail($value)
  */
 class Post extends Model
 {
