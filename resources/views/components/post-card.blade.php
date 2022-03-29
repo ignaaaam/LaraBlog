@@ -4,7 +4,11 @@
     {{ $attributes->merge(['class' => 'transition-colors duration-300  cursor-pointer hover:bg-gray-100  border border-black border-opacity-0 hover:border-opacity-5 rounded-xl']) }}>
     <div class="py-6 px-5">
         <div>
-            <img src="{{ asset('storage/' . $post->thumbnail) }}" alt="{{ $post->title }}" class="rounded-xl">
+            @if (isset($post->thumbnail))
+                <img src="{{ asset('storage/' . $post->thumbnail) }}" alt="{{ $post->title }}" class="rounded-xl">
+            @else
+                <img src="{{ URL::to('/') }}/images/illustration-{{ str(random_int(1,5)) }}.png" alt="{{ $post->title }}" class="rounded-xl">
+            @endif
         </div>
 
         <div class="mt-8 flex flex-col justify-between">

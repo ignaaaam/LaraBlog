@@ -41,7 +41,7 @@ class DatabaseSeeder extends Seeder
             'role_id' => 1
         ]);
 
-        Post::factory(25)->create([
+        $post = Post::factory(25)->create([
             'user_id' => $user->id
         ]);
 

@@ -23,9 +23,8 @@ class RegisterController extends Controller
             'email' => 'required|email|max:255|unique:users,email',
             'password' => 'required|min:7|max:255'
         ]);
-
+        $attributes['role_id'] = 2;
 //       PASSWORD HASHING MADE WITH ELOQUENT MUTATOR ON USER MODEL
-
 //        log user in
         auth()->login(User::create($attributes));
 

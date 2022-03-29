@@ -11,7 +11,11 @@
                 <div class="flex-1">
                     <x-form.input name="thumbnail" type="file" :value="old('thumbnail', $post->thumbnail)"/>
                 </div>
-                <img src="{{ asset('storage/' . $post->thumbnail) }}" alt="{{ $post->title }}" class="rounded-xl ml-6" width="100">
+                @if (isset($post->thumbnail))
+                    <img src="{{ asset('storage/' . $post->thumbnail) }}" alt="{{ $post->title }}" class="rounded-xl ml-6" width="100">
+                @else
+                    <img src="{{ URL::to('/') }}/images/illustration-{{ str(random_int(1,5)) }}.png" alt="{{ $post->title }}" class="rounded-xl ml-6" width="100">
+                @endif
 
 
             </div>

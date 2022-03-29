@@ -4,7 +4,11 @@
     <div class="py-6 px-5 lg:flex">
         <div class="flex-1 lg:mr-8">
             {{--TODO--}}
+            @if (isset($post->thumbnail))
             <img src="{{ asset('storage/' . $post->thumbnail) }}" alt="{{ $post->title }}" class="rounded-xl">
+            @else
+                <img src="{{ URL::to('/') }}/images/illustration-1.png" alt="{{ $post->title }}" class="rounded-xl">
+            @endif
         </div>
 
         <div class="flex-1 flex flex-col justify-between">
