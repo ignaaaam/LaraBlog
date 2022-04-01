@@ -45,8 +45,5 @@ class DatabaseSeeder extends Seeder
             'user_id' => $user->id
         ]);
 
-        Tag::factory(50)->create([
-        ]);
-
     }
 }
