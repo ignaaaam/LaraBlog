@@ -10,6 +10,7 @@ use App\Models\User;
 use Database\Factories\PostTagsFactory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -44,6 +45,13 @@ class DatabaseSeeder extends Seeder
         $post = Post::factory(25)->create([
             'user_id' => $user->id
         ]);
+
+        foreach(range(1,25) as $index){
+            DB::table('category_post')->insert([
+                'post_id' => rand(1, 25 ),
+                'category_id' => rand(1,25)
+            ]);
+        }
 
     }
 }

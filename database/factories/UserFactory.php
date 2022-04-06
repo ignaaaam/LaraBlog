@@ -23,7 +23,7 @@ class UserFactory extends Factory
             'username' => $this->faker->unique()->userName(),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'password' => 'linuxlinux', // password
+            'password' => 'linuxlinux', // hashed in setPasswordAttribute function on user model
             'role_id' => Role::factory(),
             'remember_token' => Str::random(10)
         ];
