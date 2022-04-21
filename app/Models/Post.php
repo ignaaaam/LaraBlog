@@ -76,7 +76,7 @@ class Post extends Model
 
     public function tag()
     {
-        return $this->belongsToMany(Tag::class, 'post_tag','tag_id')->withTimestamps();
+        return $this->belongsToMany(Tag::class)->withTimestamps();
     }
 
     public function author()

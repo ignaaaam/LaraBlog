@@ -14,6 +14,7 @@
         <div class="flex-1 flex flex-col justify-between">
             <header class="mt-8 lg:mt-0">
                 <div class="space-x-2">
+
                     @foreach($post->tag as $tag)
                         <x-tag-button :tag="$tag->name" />
                     @endforeach
