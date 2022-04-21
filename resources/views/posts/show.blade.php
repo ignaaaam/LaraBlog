@@ -39,7 +39,9 @@
                         </a>
 
                         <div class="space-x-2">
-                            <x-tag-button :tag="$post->tag"/>
+                            @foreach($post->tag as $tag)
+                                <x-tag-button :tag="$tag->name" />
+                            @endforeach
                         </div>
                     </div>
 
