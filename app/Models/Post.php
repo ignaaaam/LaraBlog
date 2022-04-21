@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property int $id
  * @property int $user_id
- * @property int $category_id
+ * @property int $tag_id
  * @property string $slug
  * @property string $title
  * @property string $excerpt
@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string|null $published_at
  * @property-read \App\Models\User $author
- * @property-read \App\Models\Category|null $category
+ * @property-read \App\Models\Tag|null $tag
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Comment[] $comments
  * @property-read int|null $comments_count
  * @method static \Database\Factories\PostFactory factory(...$parameters)
@@ -28,7 +28,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Post newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Post query()
  * @method static \Illuminate\Database\Eloquent\Builder|Post whereBody($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Post whereCategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereTagId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Post whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Post whereExcerpt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Post whereId($value)
@@ -45,7 +45,7 @@ class Post extends Model
 {
     use HasFactory;
 
-    protected $with = ['category','author'];
+    protected $with = ['tag','author'];
 
 
     public function scopeFilter($query, array $filters)
@@ -56,9 +56,9 @@ class Post extends Model
                         ->orWhere('body', 'like', '%' . $search . '%')
                     )
             );
-        $query->when($filters['category'] ?? false, fn($query, $category) =>
-            $query->whereHas('category', fn ($query) =>
-                $query->where('slug', $category)
+        $query->when($filters['tag'] ?? false, fn($query, $tag) =>
+            $query->whereHas('tag', fn ($query) =>
+                $query->where('name', $tag)
             )
         );
 
@@ -74,9 +74,9 @@ class Post extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function categories()
+    public function tag()
     {
-        return $this->belongsToMany(Category::class, 'category_post');
+        return $this->belongsToMany(Tag::class, 'post_tag','tag_id')->withTimestamps();
     }
 
     public function author()

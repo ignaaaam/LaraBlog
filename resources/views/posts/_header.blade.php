@@ -4,9 +4,9 @@
     </h1>
 
     <div class="space-y-2 lg:space-y-0 lg:space-x-4 mt-6">
-        <!--  Category -->
+        <!--  Tag -->
         <div class="relative lg:inline-flex bg-gray-100 rounded-xl">
-            <x-category-dropdown />
+            <x-tag-dropdown />
         </div>
 
         <!-- Other Filters -->

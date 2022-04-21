@@ -2,10 +2,10 @@
 
 namespace App\View\Components;
 
-use App\Models\Category;
+use App\Models\Tag;
 use Illuminate\View\Component;
 
-class CategoryDropdown extends Component
+class TagDropdown extends Component
 {
     /**
      * Create a new component instance.
@@ -24,9 +24,9 @@ class CategoryDropdown extends Component
      */
     public function render()
     {
-        return view('components.category-dropdown', [
-            'categories' => Category::all(),
-            'currentCategory' => Category::firstWhere('slug', request('category'))
+        return view('components.tag-dropdown', [
+            'tags' => Tag::all(),
+            'currentTag' => Tag::firstWhere('name', request('tag'))
         ]);
     }
 }

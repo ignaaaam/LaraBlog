@@ -2,12 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Category;
+use App\Models\Tag;
 use App\Models\Post;
 use App\Models\Role;
-use App\Models\Tag;
 use App\Models\User;
-use Database\Factories\PostTagsFactory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -23,7 +21,7 @@ class DatabaseSeeder extends Seeder
     {
 //        User::truncate();
 //        Post::truncate();
-//        Category::truncate();
+//        Tag::truncate();
 
         Role::factory()->create([
             'name' => 'admin'
@@ -42,16 +40,11 @@ class DatabaseSeeder extends Seeder
             'role_id' => 1
         ]);
 
+        $tag = Tag::factory(40)->create();
+
         $post = Post::factory(25)->create([
             'user_id' => $user->id
         ]);
-
-        foreach(range(1,25) as $index){
-            DB::table('category_post')->insert([
-                'post_id' => rand(1, 25 ),
-                'category_id' => rand(1,25)
-            ]);
-        }
 
     }
 }

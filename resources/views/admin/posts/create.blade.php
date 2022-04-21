@@ -11,19 +11,24 @@
             <x-form.textarea name="body" />
 
             <x-form.field>
-                <x-form.label name="category" />
-                <select name="category_id" id="category_id" class="border border-gray-400 p-2 rounded">
+                <x-form.label name="tag" />
+                <select name="tag_id" id="tag_id" class="border border-gray-400 p-2 rounded">
 
-                    @foreach(\App\Models\Category::all() as $category)
-                        <option
+                    @foreach(\App\Models\Tag::all() as $tag)
+                        @foreach($tag->posts as $post_tag)
+                            @php
+                                echo $post_tag->id
+                            @endphp
+                        @endforeach
+{{--                            <option--}}
 
-                            value="{{ $category->id }}"
-                            {{ old('category_id') === $category->id ? 'selected' : '' }}
-                        >{{ ucwords($category->name) }}</option>
+{{--                                value="{{ $tag->id }}"--}}
+{{--                                {{ old('tag_id') === $tag->id ? 'selected' : '' }}--}}
+{{--                            >{{ ucwords($tag->name) }}</option>--}}
                     @endforeach
                 </select>
 
-                <x-form.error name="category" />
+                <x-form.error name="tag" />
             </x-form.field>
 
             <x-form.button>Publish</x-form.button>

@@ -7,7 +7,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
 use App\Models\Post;
-use App\Models\Category;
+use App\Models\Tag;
 use App\Models\User;
 use App\Services\MailchimpNewsletter;
 use Illuminate\Support\Facades\File;
@@ -61,10 +61,10 @@ Route::middleware('can:admin')->group(function () {
 
 
 
-//Route::get('categories/{category:slug}', function (Category $category){
+//Route::get('categories/{category:slug}', function (Tag $category){
 //    return view('posts', [
 //        'posts' => $category->posts,
 //        'currentCategory' => $category,
-//        'categories' => Category::all()
+//        'categories' => Tag::all()
 //    ]);
 //})->name('category');
